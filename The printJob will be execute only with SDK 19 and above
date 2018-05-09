@@ -1,0 +1,17 @@
+@TargetApi(Build.VERSION_CODES.KITKAT)
+    private void createWebPrintJob(WebView webView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) 
+            return;
+
+        // Get a PrintManager instance
+        PrintManager printManager = (PrintManager) getSystemService(Context.PRINT_SERVICE);
+
+        // Get a print adapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
+
+        // Create a print job with name and adapter instance
+        String jobName = getString(R.string.app_name) + " Document";
+        printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
+
+    }
